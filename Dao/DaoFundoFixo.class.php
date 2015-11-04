@@ -103,5 +103,19 @@ class DaoFundoFixo {
             echo "Erro: " . $ex->getMessage();
         }
     }
+    
+    public function reportRow($where) {
+        try {
+            $stmt = $this->conex->prepare("SELECT centro_custo FROM fundo_fixo WHERE centro_custo = '$where'");
+            $stmt->execute();
+            $rows = count($stmt->fetchAll(PDO::FETCH_ASSOC));
+            // desconecta 
+            $this->conex = null;
+            // retorna o resultado da query
+            return $rows;
+        } catch (PDOException $ex) {
+            echo "Erro: " . $ex->getMessage();
+        }
+    }
 
 }

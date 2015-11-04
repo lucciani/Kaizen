@@ -20,7 +20,7 @@ class FundoFixoModel extends DaoFundoFixo {
     }
     
     public function relatorioFixo($custo) {
-        return DaoFundoFixo::relFixo($custo);
+        return DaoFundoFixo::reportRow($custo);
     }
 
 }

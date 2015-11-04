@@ -14,16 +14,25 @@ class FundoFixoController {
         $this->fundoFixo = new FundoFixoVO();
         $this->modelFixo = new FundoFixoModel();
     }
+    
+    public function getIdCusto($id) {
+         $idCusto = explode("-", $id);
+         return (int) $idCusto[0];
+    }
+    
+    public function getDate($date) {
+        $dateFormat = new DateTime($date);
+        return $dateFormat->format('Y-m-d');
+    }
 
     public function salvar() {
         //Obj VO
         $this->fundoFixo->setEmpresa($_POST["empresa"]);
         $this->fundoFixo->setColaborador($_POST["colaborador"]);
-        $this->fundoFixo->setCentro_custo($_POST["centro_custo"]);
-//        $stamp = strtotime($_POST["datesolicitacao"]);
-//        $myDate = date( 'dd-mm-yyyy', $stamp );
-//        var_dump($myDate);
-        $this->fundoFixo->setDataSolicitacao($_POST["datesolicitacao"]);
+        $id = $this->getIdCusto($_POST["centro_custo"]);
+        $this->fundoFixo->setCentro_custo($id);
+        $date = $this->getDate($_POST["datesolicitacao"]);
+        $this->fundoFixo->setDataSolicitacao($date);
         $this->fundoFixo->setValor($_POST["valor"]);
 
         //Obj Model

@@ -1,3 +1,11 @@
+<?php
+include 'Controller/CentroDeCustoController.class.php';
+include 'Controller/EmpresaController.class.php';
+$centroCusto = new CentroDeCustoController();
+$array = $centroCusto->listar();
+$empresa = new EmpresaController();
+$arrayEm = $empresa->listar();
+?>
 <div class="x_content">
     <form class="form-horizontal form-label-left" novalidate method="POST" action="">
         <span class="section">Formulário prestação de conta</span>
@@ -32,45 +40,112 @@
         </div>
     </form>
     <span class="section">Prestação de conta</span>
-    <div class="table-responsive">
-        <!-- Table-->
-        <table id="despesa-table" class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Solicitação</th>
-                    <th>Departamento</th>
-                    <th>Centro de custo</th>
-                    <th>Conta</th>
-                    <th>Nº Conta</th>
-                    <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="6" style="text-align: left;">
-                        <button class="btn btn-large btn-success" onclick="AddTableRow(this)" type="button">Adicionar Solicitação</button>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-        <!-- Fim Table-->
+    <div class="container">
+        <div class="table-responsive">
+
+            <!-- Table-->
+            <table id="despesa-table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Empresa</th>
+                        <th>Solicitação</th>
+                        <th>Centro de Custo</th>
+                        <th>Número da Conta</th>
+                        <th>Valor</th>
+                        <th class="actions">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="8" style="text-align: left;">
+                            <button class="btn btn-large btn-success" onclick="AddTableRow(this)" type="button">Adicionar Despesa</button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <!-- Fim Table-->
+        </div>
     </div>
 </div>
+<script type="text/javascript">
+
+    function id(el) {
+        return document.getElementById(el);
+    }
+    function total(un, qnt) {
+        return parseFloat(un.replace(',', '.'), 10) * parseFloat(qnt.replace(',', '.'), 10);
+    }
+    (function ($) {
+
+        RemoveTableRow = function (handler) {
+            var tr = $(handler).closest('tr');
+
+            tr.fadeOut(400, function () {
+                tr.remove();
+            });
+
+            return false;
+        };
+
+        AddTableRow = function () {
+
+            var newRow = $("<tr>");
+            var cols = "";
+
+            cols += '<td><select id="empresa" name="empresa" class="select2_single form-control" tabindex="-1"><option disabled selected>Selecione a empresa</option><?php foreach ($arrayEm as $key => $valueEm) {
+                                        echo '<option>' . $valueEm['descricao'] . '</option>';
+                                    }?></select></td>';
+
+            cols += '<td><input type="text" name="solicitacao[]" class="form-control col-md-7 col-xs-12"></td>';
+
+            cols += '<td><select id="departamento" name="departamento" class="select2_single form-control" tabindex="-1"><option disabled selected>Selecione o centro de custo</option><?php foreach ($array as $key => $value) {
+                                        echo '<option>'.$value['id'].'  -  ' . $value['descricao'] . '</option>';
+                                    }?></select></td>';
+
+            cols += '<td><select id="conta" name="conta" class="select2_single form-control" tabindex="-1"><option disabled selected>Selecione a natureza</option></select></td>';
+
+            cols += '<td><input type="text" name="valor" class="totalDia form-control col-md-7 col-xs-12"></td>';
+
+            cols += '<td class="actions">';
+            cols += '<button class="btn btn-large btn-danger" onclick="RemoveTableRow(this)" type="button">Remover</button>';
+            cols += '</td>';
+
+            newRow.append(cols);
+
+            $("#despesa-table").append(newRow);
+
+            $(".valor_unitario").on('keyup', function () {
+                var index = $("#despesa-table tbody tr").index($(this).parent().parent()) + 1;
+                var qnt = $("#despesa-table tbody tr:nth-child(" + index + ") .qnt").val();
+                var result = total($(this).val(), qnt);
+                $("#despesa-table tbody tr:nth-child(" + index + ") .totalDia").val(String(result.toFixed(2)).formatMoney());
+            });
+
+            $(".qnt").on('keyup', function () {
+                var index = $("#despesa-table tbody tr").index($(this).parent().parent()) + 1;
+                var unitario = $("#despesa-table tbody tr:nth-child(" + index + ") .valor_unitario").val();
+                var result = total($(this).val(), unitario);
+                $("#despesa-table tbody tr:nth-child(" + index + ") .totalDia").val(String(result.toFixed(2)).formatMoney());
+            });
+
+            String.prototype.formatMoney = function () {
+                var v = this;
+
+                if (v.indexOf('.') === -1) {
+                    v = v.replace(/([\d]+)/, "$1,00");
+                }
+
+                v = v.replace(/([\d]+)\.([\d]{1})$/, "$1,$20");
+                v = v.replace(/([\d]+)\.([\d]{2})$/, "$1,$2");
+                v = v.replace(/([\d]+)([\d]{3}),([\d]{2})$/, "$1.$2,$3");
+
+                return v;
+            };
+            return false;
+        };
+    })(jQuery);
+</script>

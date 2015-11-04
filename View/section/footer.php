@@ -152,7 +152,7 @@
 <script type="text/javascript">
     $('#dataviagem').daterangepicker({
         "locale": {
-            "format": "DD/MM/YYYY",
+            "format": "DD-MM-YYYY",
             "separator": " - ",
             "applyLabel": "Confirmar",
             "cancelLabel": "Limpar",
@@ -186,14 +186,14 @@
         },
         "opens": "center"
     }, function (start, end, label) {
-        console.log("New date range selected: ' + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY') + ' (predefined range: ' + label + ')");
+        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
     });
 </script>
 
 <script type="text/javascript">
     $('#dataconsulta').daterangepicker({
         "locale": {
-            "format": "DD/MM/YYYY",
+            "format": "DD-MM-YYYY",
             "separator": " - ",
             "applyLabel": "Confirmar",
             "cancelLabel": "Limpar",
@@ -227,7 +227,7 @@
         },
         "opens": "center"
     }, function (start, end, label) {
-        console.log("New date range selected: ' + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY') + ' (predefined range: ' + label + ')");
+        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
     });
 </script>
 
@@ -235,7 +235,7 @@
     $('#dataind').daterangepicker({
         "singleDatePicker": true,
         "locale": {
-            "format": "DD/MM/YYYY",
+            "format": "DD-MM-YYYY",
             "separator": " - ",
             "applyLabel": "Confirmar",
             "cancelLabel": "Limpar",
@@ -269,14 +269,14 @@
         },
         "opens": "center"
     }, function (start, end, label) {
-        console.log("New date range selected: ' + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY') + ' (predefined range: ' + label + ')");
+        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
     });
 </script>
 <script>
     $('#datalimite').daterangepicker({
         "singleDatePicker": true,
         "locale": {
-            "format": "DD/MM/YYYY",
+            "format": "DD-MM-YYYY",
             "separator": " - ",
             "applyLabel": "Confirmar",
             "cancelLabel": "Limpar",
@@ -310,14 +310,14 @@
         },
         "opens": "center"
     }, function (start, end, label) {
-        console.log("New date range selected: ' + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY') + ' (predefined range: ' + label + ')");
+        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
     });
 </script>
 <script>
     $('#datafixo').daterangepicker({
         "singleDatePicker": true,
         "locale": {
-            "format": "DD/MM/YYYY",
+            "format": "DD-MM-YYYY",
             "separator": " - ",
             "applyLabel": "Confirmar",
             "cancelLabel": "Limpar",
@@ -351,7 +351,7 @@
         },
         "opens": "center"
     }, function (start, end, label) {
-        console.log("New date range selected: ' + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY') + ' (predefined range: ' + label + ')");
+        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
     });
 </script>
 <!-- /datepicker -->

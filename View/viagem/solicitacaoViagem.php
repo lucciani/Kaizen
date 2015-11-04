@@ -85,7 +85,7 @@ include 'Controller/ColaboradorController.class.php';
                                     $centroCusto = new CentroDeCustoController();
                                     $array = $centroCusto->listar();
                                     foreach ($array as $key => $value) {
-                                        echo '<option>' . $value['descricao'] . '</option>';
+                                        echo '<option>'.$value['id'].'  -  ' . $value['descricao'] . '</option>';
                                     }
                                     ?>
                                 </select>

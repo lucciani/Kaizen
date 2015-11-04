@@ -26,11 +26,11 @@ class CentroDeCustoController {
 
 
         if ($this->modelCusto->inserirModel($this->custo)) {
-            header("Location: View/custo/centrodecusto.php");
+            $_SESSION["msg"] = "Pessoa não cadastrada.";
         } else {
             $_SESSION["msg"] = "Pessoa não cadastrada.";
         }
-        header("Location: http://localhost/kaizen_2/index.php?content=home");
+        header("Location: index.php?content=custo");
     }
 
     public function listar() {

@@ -69,6 +69,10 @@ if (isset($_GET["Controller"])) {
                             include 'View/content/consultarSolicitacao.php';
                             ;
                             break;
+                        case "custo":
+                            include 'View/custo/centrodecusto.php';
+                            ;
+                            break;
                         case "relatorio":
                             include 'View/ireport/relatorio.php';
                             ;

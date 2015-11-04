@@ -19,6 +19,8 @@
             </li>
             <li><a href="index.php?content=relatorio"><i class = "fa fa-bar-chart-o"></i> Relatório </a>
             </li>
+            <li><a href="index.php?content=custo"><i class = "fa fa-archive"></i> Cadastro Centro de Custo </a>
+            </li>
             <li><a href="index.php?content=prestacaoDeConta"><i class = "fa fa-file-pdf-o"></i> Prestação de conta </a>
             </li>
             <li><a href="index.php?content=sair"><i class = "fa fa-power-off"></i> Sair </a>

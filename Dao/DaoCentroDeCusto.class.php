@@ -45,5 +45,19 @@ class DaoCentroDeCusto {
             echo "Erro: " . $ex->getMessage();
         }
     }
+    
+    public function qntRegistros() {
+        try {
+            $stmt = $this->conex->prepare("SELECT * FROM centro_de_custo");
+            $stmt->execute();
+            $rows = count($stmt->fetchAll(PDO::FETCH_ASSOC));
+            // desconecta 
+            $this->conex = null;
+            // retorna o resultado da query
+            return $rows;
+        } catch (PDOException $ex) {
+            echo "Erro: " . $ex->getMessage();
+        }
+    }
 
 }
