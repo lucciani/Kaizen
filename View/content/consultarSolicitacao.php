@@ -5,7 +5,7 @@ include 'Controller/FundoFixoController.class.php';
 include 'Controller/OutrasSolicitacoesController.class.php';
 ?>
 <div class="x_content">
-    <form class="form-horizontal form-label-left" novalidate method="POST" action="http://localhost/kaizen_2/index.php?content=consultar">
+    <form class="form-horizontal form-label-left" novalidate method="POST" action="index.php?content=consultar">
         <span class="section">Consulta de solicitações</span>
 
         <div class="item form-group">

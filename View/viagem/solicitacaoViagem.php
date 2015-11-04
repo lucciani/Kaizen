@@ -36,6 +36,15 @@ include 'Controller/ColaboradorController.class.php';
                             <span class="step_no">3</span>
                             <span class="step_descr">
                                 Passo 3<br />
+                                <small>Dados da hospedagem</small>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#step-4">
+                            <span class="step_no">4</span>
+                            <span class="step_descr">
+                                Passo 4<br />
                                 <small>Dados das despesas</small>
                             </span>
                         </a>
@@ -85,7 +94,7 @@ include 'Controller/ColaboradorController.class.php';
                                     $centroCusto = new CentroDeCustoController();
                                     $array = $centroCusto->listar();
                                     foreach ($array as $key => $value) {
-                                        echo '<option>'.$value['id'].'  -  ' . $value['descricao'] . '</option>';
+                                        echo '<option>' . $value['id'] . '  -  ' . $value['descricao'] . '</option>';
                                     }
                                     ?>
                                 </select>
@@ -101,49 +110,6 @@ include 'Controller/ColaboradorController.class.php';
                     </div>
                     <div id="step-2">
                         <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="destino">Destino <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select id="destino" name="destino" class="select2_single form-control" tabindex="-1"required="required">
-                                    <option> </option>
-                                    <option >Acre </option>
-                                    <option >Alagoas</option>
-                                    <option >Amapá</option>
-                                    <option >Amazonas</option>
-                                    <option >Bahia</option>
-                                    <option >Ceará</option>
-                                    <option >Distrito Federal</option>
-                                    <option >Espírito Santo </option>
-                                    <option >Goiás </option>
-                                    <option >Maranhão</option>
-                                    <option >Mato Grosso</option>
-                                    <option >Mato Grosso do Sul</option>
-                                    <option >Minas Gerais</option>
-                                    <option >Pará</option>
-                                    <option >Paraíba</option>
-                                    <option >Paraná</option>
-                                    <option >Pernambuco</option>
-                                    <option >Piauí</option>
-                                    <option >Rio de Janeiro</option>
-                                    <option >Rio Grande do Norte </option>
-                                    <option >Rio Grande do Sul </option>
-                                    <option >Rondônia </option>
-                                    <option >Roraima </option>
-                                    <option >Santa Catarina</option>
-                                    <option >São Paulo</option>
-                                    <option >Sergipe </option>
-                                    <option >Tocantins</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="periodoviagem">Período da viagem <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" style="width: 200px" name="reservation" id="dataviagem" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="motivoviagem">Motivo <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -151,14 +117,70 @@ include 'Controller/ColaboradorController.class.php';
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="motorista">Motorista
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="obs">Observações
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="motorista" name="motorista" data-validate-linked="colaborador" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="obs" name="obs" data-validate-linked="obs" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="table-responsive">
+                                <!-- Table-->
+                                <table id="viagem-table" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Destino</th>
+                                            <th>Período</th>
+                                            <th class="actions">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3" style="text-align: left;">
+                                                <button class="btn btn-large btn-success" onclick="AddViagem(this)" type="button">Adicionar Destino</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <!-- Fim Table-->
                             </div>
                         </div>
                     </div>
                     <div id="step-3">
+                        <div class="container">
+                            <div class="table-responsive">
+                                <!-- Table-->
+                                <table id="hospedagem-table" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Cidades/Estado</th>
+                                            <th>Entrada</th>
+                                            <th>Saida</th>
+                                            <th>Diárias</th>
+                                            <th class="actions">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" style="text-align: left;">
+                                                <button class="btn btn-large btn-success" onclick="AddHosp(this)" type="button">Adicionar Hospedagem</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <!-- Fim Table-->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step-4">
                         <div class="container">
                             <div class="table-responsive">
 
@@ -195,12 +217,14 @@ include 'Controller/ColaboradorController.class.php';
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
+<!--JS tabela despesas-->
 <script type="text/javascript">
     function id(el) {
         return document.getElementById(el);
@@ -255,17 +279,6 @@ include 'Controller/ColaboradorController.class.php';
                 $("#despesa-table tbody tr:nth-child(" + index + ") .totalDia").val(String(result.toFixed(2)).formatMoney());
             });
 
-//            $(".totalDia").blur(function () {
-//                //declaro uma var para somar o total
-//                var total = 0;
-//                //faço um foreach percorrendo todos os inputs com a class soma e faço a soma na var criada acima
-//                $(".totalDia")val.each(function () {
-//                    total = total + Number($(this).val());
-//                });
-//                //mostro o total no input Sub Total
-//                $(".total").val(total);
-//            });
-
             String.prototype.formatMoney = function () {
                 var v = this;
 
@@ -279,6 +292,200 @@ include 'Controller/ColaboradorController.class.php';
 
                 return v;
             };
+            return false;
+        };
+    })(jQuery);
+</script>
+
+<!--JS tabela hospedagem-->
+<script type="text/javascript">
+    (function ($) {
+
+        RemoveHosp = function (handler) {
+            var tr = $(handler).closest('tr');
+
+            tr.fadeOut(400, function () {
+                tr.remove();
+            });
+
+            return false;
+        };
+
+        AddHosp = function () {
+
+            var newRow = $("<tr>");
+            var cols = "";
+
+            cols += '<td><select id="destino" name="destino" class="select2_single form-control" tabindex="-1"><option disabled selected>Selecione o destino></option><option >Acre </option><option >Alagoas</option><option >Amapá</option><option >Amazonas</option><option >Bahia</option><option >Ceará</option><option >Distrito Federal</option><option >Espírito Santo </option><option >Goiás </option><option >Maranhão</option><option >Mato Grosso</option><option >Mato Grosso do Sul</option><option >Minas Gerais</option><option >Pará</option><option >Paraíba</option><option >Paraná</option><option >Pernambuco</option><option >Piauí</option><option >Rio de Janeiro</option><option >Rio Grande do Norte </option><option >Rio Grande do Sul </option><option >Rondônia </option><option >Roraima </option><option >Santa Catarina</option><option >São Paulo</option><option >Sergipe </option><option >Tocantins</option></select></td>';
+
+            cols += '<td><input type="text" name="entrada" class="dataHospIn form-control col-md-7 col-xs-12"></td>';
+
+            cols += '<td><input type="text" name="saida" class="dataHospOut form-control col-md-7 col-xs-12"></td>';
+
+            cols += '<td><input type="text" name="diarias" class="totalDia form-control col-md-7 col-xs-12" disabled="disabled"></td>';
+
+            cols += '<td class="actions">';
+            cols += '<button class="btn btn-large btn-danger" onclick="RemoveHosp(this)" type="button">Remover</button>';
+            cols += '</td>';
+
+            newRow.append(cols);
+
+            $("#hospedagem-table").append(newRow);
+
+            $('.dataHospIn').daterangepicker({
+                "singleDatePicker": true,
+                "locale": {
+                    "format": "DD-MM-YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Confirmar",
+                    "cancelLabel": "Limpar",
+                    "fromLabel": "Saída",
+                    "toLabel": "Chegada",
+                    "customRangeLabel": "Custom",
+                    "daysOfWeek": [
+                        "Dom",
+                        "Seg",
+                        "Ter",
+                        "Qua",
+                        "Qui",
+                        "Sex",
+                        "Sab"
+                    ],
+                    "monthNames": [
+                        "Janeiro",
+                        "Fevereiro",
+                        "Março",
+                        "Abril",
+                        "Maio",
+                        "Junho",
+                        "Julho",
+                        "Agosto",
+                        "Setembro",
+                        "Outubro",
+                        "Novembro",
+                        "Dezembro"
+                    ],
+                    "firstDay": 1
+                },
+                "opens": "center"
+            }, function (start, end, label) {
+                console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+            });
+            $('.dataHospOut').daterangepicker({
+                "singleDatePicker": true,
+                "locale": {
+                    "format": "DD-MM-YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Confirmar",
+                    "cancelLabel": "Limpar",
+                    "fromLabel": "Saída",
+                    "toLabel": "Chegada",
+                    "customRangeLabel": "Custom",
+                    "daysOfWeek": [
+                        "Dom",
+                        "Seg",
+                        "Ter",
+                        "Qua",
+                        "Qui",
+                        "Sex",
+                        "Sab"
+                    ],
+                    "monthNames": [
+                        "Janeiro",
+                        "Fevereiro",
+                        "Março",
+                        "Abril",
+                        "Maio",
+                        "Junho",
+                        "Julho",
+                        "Agosto",
+                        "Setembro",
+                        "Outubro",
+                        "Novembro",
+                        "Dezembro"
+                    ],
+                    "firstDay": 1
+                },
+                "opens": "center"
+            }, function (start, end, label) {
+                console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+            });
+
+            return false;
+        };
+    })(jQuery);
+</script>
+
+<!--JS tabela viagem-->
+<script type="text/javascript">
+    (function ($) {
+
+        RemoveViagem = function (handler) {
+            var tr = $(handler).closest('tr');
+
+            tr.fadeOut(400, function () {
+                tr.remove();
+            });
+
+            return false;
+        };
+
+        AddViagem = function () {
+
+            var newRow = $("<tr>");
+            var cols = "";
+
+            cols += '<td><select id="destino" name="destino" class="select2_single form-control" tabindex="-1"><option disabled selected>Selecione o destino></option><option >Acre </option><option >Alagoas</option><option >Amapá</option><option >Amazonas</option><option >Bahia</option><option >Ceará</option><option >Distrito Federal</option><option >Espírito Santo </option><option >Goiás </option><option >Maranhão</option><option >Mato Grosso</option><option >Mato Grosso do Sul</option><option >Minas Gerais</option><option >Pará</option><option >Paraíba</option><option >Paraná</option><option >Pernambuco</option><option >Piauí</option><option >Rio de Janeiro</option><option >Rio Grande do Norte </option><option >Rio Grande do Sul </option><option >Rondônia </option><option >Roraima </option><option >Santa Catarina</option><option >São Paulo</option><option >Sergipe </option><option >Tocantins</option></select></td>';
+
+            cols += '<td><input type="text" name="reservation" id="dataviagem" class="dataviagem form-control"/></td>';
+
+            cols += '<td class="actions">';
+            cols += '<button class="btn btn-large btn-danger" onclick="RemoveViagem(this)" type="button">Remover</button>';
+            cols += '</td>';
+
+            newRow.append(cols);
+
+            $("#viagem-table").append(newRow);
+
+            $('.dataviagem').daterangepicker({
+                "locale": {
+                    "format": "DD-MM-YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Confirmar",
+                    "cancelLabel": "Limpar",
+                    "fromLabel": "Saída",
+                    "toLabel": "Chegada",
+                    "customRangeLabel": "Custom",
+                    "daysOfWeek": [
+                        "Dom",
+                        "Seg",
+                        "Ter",
+                        "Qua",
+                        "Qui",
+                        "Sex",
+                        "Sab"
+                    ],
+                    "monthNames": [
+                        "Janeiro",
+                        "Fevereiro",
+                        "Março",
+                        "Abril",
+                        "Maio",
+                        "Junho",
+                        "Julho",
+                        "Agosto",
+                        "Setembro",
+                        "Outubro",
+                        "Novembro",
+                        "Dezembro"
+                    ],
+                    "firstDay": 1
+                },
+                "opens": "center"
+            }, function (start, end, label) {
+                console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+            });
+
             return false;
         };
     })(jQuery);
