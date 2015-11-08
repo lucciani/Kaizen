@@ -1,7 +1,7 @@
 <?php
-session_start();
+require('app/Config.inc.php');
 if (isset($_GET["Controller"])) {
-    include "Controller/" . $_GET["Controller"] . "Controller.class.php";
+    include "app/Controller/" . $_GET["Controller"] . "Controller.class.php";
 
     $class = $_GET["Controller"] . "Controller";
 
@@ -10,6 +10,7 @@ if (isset($_GET["Controller"])) {
         eval("\$Controller->\$_GET['Action']();");
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

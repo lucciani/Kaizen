@@ -1,8 +1,3 @@
-<?php
-include 'Controller/FundoFixoController.class.php';
-include 'Controller/ViagemController.class.php';
-include 'Controller/OutrasSolicitacoesController.class.php';
-?>
 <div class="">
     <div class="row top_tiles">
         <div class="animated flipInY col-lg-4 col-md-3 col-sm-6 col-xs-12">

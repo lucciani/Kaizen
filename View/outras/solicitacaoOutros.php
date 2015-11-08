@@ -1,7 +1,7 @@
 <?php
-include 'Controller/CentroDeCustoController.class.php';
-include 'Controller/EmpresaController.class.php';
-include 'Controller/ColaboradorController.class.php';
+//include 'Controller/CentroDeCustoController.class.php';
+//include 'Controller/EmpresaController.class.php';
+//include 'Controller/ColaboradorController.class.php';
 ?>
 <div class="x_content">
     <form class="form-horizontal form-label-left" novalidate method="POST" action="http://localhost/kaizen_2/index.php?Controller=OutrasSolicitacoes&Action=salvar">

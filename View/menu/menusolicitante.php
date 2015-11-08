@@ -9,8 +9,6 @@
                 <ul class = "nav child_menu" style = "display: none">
                     <li><a href = "index.php?content=viagem">Viagem</a>
                     </li>
-                    <li><a href = "index.php?content=#">Verba para viagem</a>
-                    </li>
                     <li><a href = "index.php?content=fundoFixo">Fundo Fixo</a>
                     </li>
                     <li><a href = "index.php?content=outros">Outras</a>

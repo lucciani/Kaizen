@@ -1,11 +1,6 @@
-<?php
-include 'Controller/CentroDeCustoController.class.php';
-include 'Controller/EmpresaController.class.php';
-include 'Controller/ColaboradorController.class.php';
-?>
 <div class="x_content">
 
-    <form class="form-horizontal form-label-left" novalidate method="POST" action="http://localhost/kaizen_2/index.php?Controller=FundoFixo&Action=salvar">
+    <form class="form-horizontal form-label-left" novalidate method="POST" action="index.php?Controller=FundoFixo&Action=salvar">
         <span class="section">Solicitação para fundo fixo</span>
 
         <div class="item form-group">
@@ -18,7 +13,7 @@ include 'Controller/ColaboradorController.class.php';
                     $empresa = new EmpresaController();
                     $arrayEm = $empresa->listar();
                     foreach ($arrayEm as $key => $valueEm) {
-                        echo '<option>' . $valueEm['descricao'] . '</option>';
+                        echo '<option>'. $valueEm['descricao'] . '</option>';
                     }
                     ?>
                 </select>
@@ -34,7 +29,7 @@ include 'Controller/ColaboradorController.class.php';
                     $col = new ColaboradorController();
                     $arrayCol = $col->listar();
                     foreach ($arrayCol as $key => $valueCol) {
-                        echo '<option>' .$valueCol['nome'] . '</option>';
+                        echo '<option>' . $valueCol['nome'] . '</option>';
                     }
                     ?>
                 </select>
@@ -50,7 +45,7 @@ include 'Controller/ColaboradorController.class.php';
                     $centroCusto = new CentroDeCustoController();
                     $array = $centroCusto->listar();
                     foreach ($array as $key => $value) {
-                        echo '<option>'.$value['id'].' - ' . $value['descricao'] . '</option>';
+                        echo '<option>' . $value['id'] . ' - ' . $value['descricao'] . '</option>';
                     }
                     ?>
                 </select>

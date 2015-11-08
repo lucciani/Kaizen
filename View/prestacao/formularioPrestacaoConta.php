@@ -1,6 +1,6 @@
 <?php
-include 'Controller/CentroDeCustoController.class.php';
-include 'Controller/EmpresaController.class.php';
+//include 'Controller/CentroDeCustoController.class.php';
+//include 'Controller/EmpresaController.class.php';
 $centroCusto = new CentroDeCustoController();
 $array = $centroCusto->listar();
 $empresa = new EmpresaController();

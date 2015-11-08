@@ -1,5 +1,5 @@
 <div class="x_content">
-    <form class="form-horizontal form-label-left" novalidate method="POST" action="http://localhost/kaizen_2/index.php?Controller=Solicitante&Action=salvar">
+    <form class="form-horizontal form-label-left" novalidate method="POST" action="index.php?Controller=Solicitante&Action=salvar">
         <span class="section">Cadastro de Solicitante</span>
         <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cpf">CPF <span class="required">*</span>

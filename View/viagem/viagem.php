@@ -1,27 +1,16 @@
 <?php
-$op = (isset($_GET['subcontent'])) ? $_GET['subcontent'] : '';
-switch ($op) {
-    case "subviagem":
-        include 'View/viagem/viagem.php';
-        break;
-    case "verbaviagem":
-        include 'View/viagem/verbaviagem.php';
-        break;
-    default:
-        include 'View/viagem/homeviagem.php';
-        break;
-}
+//include 'Controller/CentroDeCustoController.class.php';
+//include 'Controller/EmpresaController.class.php';
+//include 'Controller/ColaboradorController.class.php';
 ?>
-
-
-<!--<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
             <h2>Solicitação para viagem </h2>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            Smart Wizard 
+            <!-- Smart Wizard -->
             <div id="wizard" class="form_wizard wizard_horizontal">
                 <ul class="wizard_steps">
                     <li>
@@ -69,13 +58,13 @@ switch ($op) {
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="empresa" name="empresa" class="select2_single form-control" tabindex="-1"required="required">
                                     <option > </option>
-<?php
-$empresa = new EmpresaController();
-$arrayEm = $empresa->listar();
-foreach ($arrayEm as $key => $valueEm) {
-    echo '<option>' . $valueEm['descricao'] . '</option>';
-}
-?>
+                                    //<?php
+                                    $empresa = new EmpresaController();
+                                    $arrayEm = $empresa->listar();
+                                    foreach ($arrayEm as $key => $valueEm) {
+                                        echo '<option>' . $valueEm['descricao'] . '</option>';
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -85,13 +74,13 @@ foreach ($arrayEm as $key => $valueEm) {
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="colaborador" name="colaborador" class="select2_single form-control" tabindex="-1"required="required">
                                     <option > </option>
-<?php
-$col = new ColaboradorController();
-$arrayCol = $col->listar();
-foreach ($arrayCol as $key => $valueCol) {
-    echo '<option>' . $valueCol['nome'] . '</option>';
-}
-?>
+                                    //<?php
+                                    $col = new ColaboradorController();
+                                    $arrayCol = $col->listar();
+                                    foreach ($arrayCol as $key => $valueCol) {
+                                        echo '<option>' . $valueCol['nome'] . '</option>';
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -101,148 +90,147 @@ foreach ($arrayCol as $key => $valueCol) {
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="departamento" name="departamento" class="select2_single form-control" tabindex="-1"required="required">
                                     <option> </option>
-<?php
-$centroCusto = new CentroDeCustoController();
-$array = $centroCusto->listar();
-foreach ($array as $key => $value) {
-    echo '<option>' . $value['id'] . '  -  ' . $value['descricao'] . '</option>';
-}
-?>
-                        </select>
-                    </div>
-                </div>
-                <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="datesolicitacao">Data de Solicitação <span class="required">*</span>
-                    </label>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <input type="text" id="dataind" name="datesolicitacao" data-validate-linked="datesolicitacao" class="form-control col-md-7 col-xs-12">
-                    </div>
-                </div>
-            </div>
-            <div id="step-2">
-                <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="motivoviagem">Motivo <span class="required">*</span>
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <textarea id="motivoviagem" required="required" name="motivoviagem" class="form-control col-md-7 col-xs-12"></textarea>
-                    </div>
-                </div>
-                <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="obs">Observações <span class="required">*</span>
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <textarea id="obs" required="required" name="obs" class="form-control col-md-7 col-xs-12"></textarea>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="table-responsive">
-                        Table
-                        <table id="viagem-table" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Destino</th>
-                                    <th>Período</th>
-                                    <th class="actions">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="3" style="text-align: left;">
-                                        <button class="btn btn-large btn-success" onclick="AddViagem(this)" type="button">Adicionar Destino</button>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        Fim Table
-                    </div>
-                </div>
-            </div>
-            <div id="step-3">
-                <div class="container">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="local">Local do evento
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="local" name="local" data-validate-linked="local" class="form-control col-md-7 col-xs-12">
+                                    <?php
+                                    $centroCusto = new CentroDeCustoController();
+                                    $array = $centroCusto->listar();
+                                    foreach ($array as $key => $value) {
+                                        echo '<option>' . $value['id'] . '  -  ' . $value['descricao'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="table-responsive">
-                        Table
-                        <table id="hospedagem-table" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Cidades/Estado</th>
-                                    <th>Entrada</th>
-                                    <th>Saida</th>
-                                    <th>Diárias</th>
-                                    <th class="actions">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="5" style="text-align: left;">
-                                        <button class="btn btn-large btn-success" onclick="AddHosp(this)" type="button">Adicionar Hospedagem</button>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        Fim Table
-                    </div>
-                </div>
-            </div>
-            <div id="step-4">
-                <div class="container">
-                    <div class="table-responsive">
-                        Table
-                        <table id="despesa-table" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Despesa</th>
-                                    <th>Quantidade</th>
-                                    <th>Valor/Dia</th>
-                                    <th>Total/Dia</th>
-                                    <th class="actions">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="6" style="text-align: left;">
-                                        <button class="btn btn-large btn-success" onclick="AddTableRow(this)" type="button">Adicionar Despesa</button>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        Fim Table
-                        <div class="form-group">
-                            <label class="control-label col-md-10 col-sm-6 col-xs-6" for="total">Total 
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="datesolicitacao">Data de Solicitação <span class="required">*</span>
                             </label>
-                            <div class="col-md-2 col-sm-2 col-xs-2">
-                                <input type="text" id="total" name="total" data-validate-linked="total" disabled="disabled" class="total form-control col-md-7 col-xs-12">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <input type="text" id="dataind" name="datesolicitacao" data-validate-linked="datesolicitacao" class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div id="step-2">
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="motivoviagem">Motivo <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea id="motivoviagem" required="required" name="motivoviagem" class="form-control col-md-7 col-xs-12"></textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="obs">Observações <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea id="obs" required="required" name="obs" class="form-control col-md-7 col-xs-12"></textarea>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="table-responsive">
+                                <!-- Table-->
+                                <table id="viagem-table" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Destino</th>
+                                            <th>Período</th>
+                                            <th class="actions">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3" style="text-align: left;">
+                                                <button class="btn btn-large btn-success" onclick="AddViagem(this)" type="button">Adicionar Destino</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <!-- Fim Table-->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step-3">
+                        <div class="container">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="local">Local do evento
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="local" name="local" data-validate-linked="local" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <!-- Table-->
+                                <table id="hospedagem-table" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Cidades/Estado</th>
+                                            <th>Entrada</th>
+                                            <th>Saida</th>
+                                            <th>Diárias</th>
+                                            <th class="actions">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" style="text-align: left;">
+                                                <button class="btn btn-large btn-success" onclick="AddHosp(this)" type="button">Adicionar Hospedagem</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <!-- Fim Table-->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step-4">
+                        <div class="container">
+                            <div class="table-responsive">
+                                <!-- Table-->
+                                <table id="despesa-table" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Despesa</th>
+                                            <th>Quantidade</th>
+                                            <th>Valor/Dia</th>
+                                            <th>Total/Dia</th>
+                                            <th class="actions">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="6" style="text-align: left;">
+                                                <button class="btn btn-large btn-success" onclick="AddTableRow(this)" type="button">Adicionar Despesa</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <!-- Fim Table-->
+                                <div class="form-group">
+                                    <label class="control-label col-md-10 col-sm-6 col-xs-6" for="total">Total 
+                                    </label>
+                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                        <input type="text" id="total" name="total" data-validate-linked="total" disabled="disabled" class="total form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </div>
-</div>
-</div>-->
-
 <!--JS tabela despesas-->
-<!--<script type="text/javascript">
+<script type="text/javascript">
     function id(el) {
         return document.getElementById(el);
     }
@@ -312,10 +300,10 @@ foreach ($array as $key => $value) {
             return false;
         };
     })(jQuery);
-</script>-->
+</script>
 
 <!--JS tabela hospedagem-->
-<!--<script type="text/javascript">
+<script type="text/javascript">
     (function ($) {
 
         RemoveHosp = function (handler) {
@@ -431,10 +419,10 @@ foreach ($array as $key => $value) {
             return false;
         };
     })(jQuery);
-</script>-->
+</script>
 
 <!--JS tabela viagem-->
-<!--<script type="text/javascript">
+<script type="text/javascript">
     (function ($) {
 
         RemoveViagem = function (handler) {
@@ -506,4 +494,4 @@ foreach ($array as $key => $value) {
             return false;
         };
     })(jQuery);
-</script>-->
+</script>

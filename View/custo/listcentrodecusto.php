@@ -1,4 +1,3 @@
-<?php include 'Controller/CentroDeCustoController.class.php'; ?>
 <div class="x_content">
     <div class="col-md-12 col-sm-6 col-xs-12">
         <div class="x_panel">

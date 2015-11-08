@@ -1,8 +1,8 @@
 <?php
-include 'Controller/ConsultarController.class.php';
-include 'Controller/ViagemController.class.php';
-include 'Controller/FundoFixoController.class.php';
-include 'Controller/OutrasSolicitacoesController.class.php';
+//include 'Controller/ConsultarController.class.php';
+//include 'Controller/ViagemController.class.php';
+//include 'Controller/FundoFixoController.class.php';
+//include 'Controller/OutrasSolicitacoesController.class.php';
 ?>
 <div class="x_content">
     <form class="form-horizontal form-label-left" novalidate method="POST" action="index.php?content=consultar">
@@ -23,7 +23,7 @@ include 'Controller/OutrasSolicitacoesController.class.php';
         <div class="ln_solid"></div>
         <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
-                <button id="send" type="submit" class="btn btn-success">Pesquisar</button>
+                <button id="send" type="submit" class="pesquisar btn btn-success">Pesquisar</button>
             </div>
         </div>
     </form>
@@ -152,3 +152,7 @@ include 'Controller/OutrasSolicitacoesController.class.php';
         </div>
     </div>
 </div>
+<!-- PNotify -->
+<script type="text/javascript" src="js/notify/pnotify.core.js"></script>
+<script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
+<script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
