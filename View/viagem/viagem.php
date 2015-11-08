@@ -1,7 +1,6 @@
 <?php
-//include 'Controller/CentroDeCustoController.class.php';
-//include 'Controller/EmpresaController.class.php';
-//include 'Controller/ColaboradorController.class.php';
+$colaborador = new ColaboradorController();
+$arrayCol = $colaborador->listar();
 ?>
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
@@ -45,7 +44,7 @@
                             <span class="step_no">4</span>
                             <span class="step_descr">
                                 Passo 4<br />
-                                <small>Dados das Despesas</small>
+                                <small>Ajuda de custo</small>
                             </span>
                         </a>
                     </li>
@@ -63,22 +62,6 @@
                                     $arrayEm = $empresa->listar();
                                     foreach ($arrayEm as $key => $valueEm) {
                                         echo '<option>' . $valueEm['descricao'] . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="colaborador">Colaborador <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select id="colaborador" name="colaborador" class="select2_single form-control" tabindex="-1"required="required">
-                                    <option > </option>
-                                    //<?php
-                                    $col = new ColaboradorController();
-                                    $arrayCol = $col->listar();
-                                    foreach ($arrayCol as $key => $valueCol) {
-                                        echo '<option>' . $valueCol['nome'] . '</option>';
                                     }
                                     ?>
                                 </select>
@@ -107,7 +90,36 @@
                                 <input type="text" id="dataind" name="datesolicitacao" data-validate-linked="datesolicitacao" class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
+                        <div class="container">
+                            <div class="table-responsive">
+                                <!--                            Table-->
+                                <table id="colaborador-table" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Colaborador</th>
+                                            <th>CPF</th>
+                                            <th>RG</th>
+                                            <th>Data Nascimento</th>
+                                            <th class="actions">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" style="text-align: left;">
+                                                <button class="btn btn-large btn-success" onclick="AddColaborador(this)" type="button">Adicionar Colaborador</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <!--                            Fim Table-->
+                            </div>
+                        </div>
                     </div>
+
                     <div id="step-2">
                         <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="motivoviagem">Motivo <span class="required">*</span>
@@ -129,7 +141,9 @@
                                 <table id="viagem-table" class="table table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>Origem</th>
                                             <th>Destino</th>
+                                            <th>Horário Preferência</th>
                                             <th>Período</th>
                                             <th class="actions">Ações</th>
                                         </tr>
@@ -140,7 +154,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="3" style="text-align: left;">
+                                            <td colspan="4" style="text-align: left;">
                                                 <button class="btn btn-large btn-success" onclick="AddViagem(this)" type="button">Adicionar Destino</button>
                                             </td>
                                         </tr>
@@ -229,6 +243,53 @@
         </div>
     </div>
 </div>
+<!--JS tabela colaborador-->
+<script type="text/javascript">
+    (function($) {
+
+        RemoveColaborador = function(handler) {
+            var tr = $(handler).closest('tr');
+
+            tr.fadeOut(400, function() {
+                tr.remove();
+            });
+
+            return false;
+        };
+
+        AddColaborador = function() {
+
+            var newRow = $("<tr>");
+            var cols = "";
+
+            cols += '<td><select id="colaborador" name="colaborador[]" class="js-example-basic-single" tabindex="-1"><option disabled selected>Selecione o colaborador</option><?php
+                                    foreach ($arrayCol as $key => $valuecol) {
+                                        echo '<option>' . $valuecol['nome'] . '</option>';
+                                    }
+                                    ?></select></td>';
+
+            cols += '<td><input type="text" name="cpf[]" class="form-control col-md-7 col-xs-12" disabled="disabled"></td>';
+
+            cols += '<td><input type="text" name="rg[]" class="rg form-control col-md-7 col-xs-12" disabled="disabled"></td>';
+
+            cols += '<td><input type="text" name="dataNasc" class="dataNasc form-control col-md-7 col-xs-12" disabled="disabled"></td>';
+
+            cols += '<td class="actions">';
+            cols += '<button class="btn btn-large btn-danger" onclick="RemoveColaborador(this)" type="button">Remover</button>';
+            cols += '</td>';
+
+            newRow.append(cols);
+
+            $("#colaborador-table").append(newRow);
+            
+            $(".js-example-basic-single").select2();
+
+            return false;
+        };
+    })(jQuery);
+</script>
+
+
 <!--JS tabela despesas-->
 <script type="text/javascript">
     function id(el) {
@@ -237,19 +298,19 @@
     function total(un, qnt) {
         return parseFloat(un.replace(',', '.'), 10) * parseFloat(qnt.replace(',', '.'), 10);
     }
-    (function ($) {
+    (function($) {
 
-        RemoveTableRow = function (handler) {
+        RemoveTableRow = function(handler) {
             var tr = $(handler).closest('tr');
 
-            tr.fadeOut(400, function () {
+            tr.fadeOut(400, function() {
                 tr.remove();
             });
 
             return false;
         };
 
-        AddTableRow = function () {
+        AddTableRow = function() {
 
             var newRow = $("<tr>");
             var cols = "";
@@ -270,21 +331,21 @@
 
             $("#despesa-table").append(newRow);
 
-            $(".valor_unitario").on('keyup', function () {
+            $(".valor_unitario").on('keyup', function() {
                 var index = $("#despesa-table tbody tr").index($(this).parent().parent()) + 1;
                 var qnt = $("#despesa-table tbody tr:nth-child(" + index + ") .qnt").val();
                 var result = total($(this).val(), qnt);
                 $("#despesa-table tbody tr:nth-child(" + index + ") .totalDia").val(String(result.toFixed(2)).formatMoney());
             });
 
-            $(".qnt").on('keyup', function () {
+            $(".qnt").on('keyup', function() {
                 var index = $("#despesa-table tbody tr").index($(this).parent().parent()) + 1;
                 var unitario = $("#despesa-table tbody tr:nth-child(" + index + ") .valor_unitario").val();
                 var result = total($(this).val(), unitario);
                 $("#despesa-table tbody tr:nth-child(" + index + ") .totalDia").val(String(result.toFixed(2)).formatMoney());
             });
 
-            String.prototype.formatMoney = function () {
+            String.prototype.formatMoney = function() {
                 var v = this;
 
                 if (v.indexOf('.') === -1) {
@@ -304,19 +365,19 @@
 
 <!--JS tabela hospedagem-->
 <script type="text/javascript">
-    (function ($) {
+    (function($) {
 
-        RemoveHosp = function (handler) {
+        RemoveHosp = function(handler) {
             var tr = $(handler).closest('tr');
 
-            tr.fadeOut(400, function () {
+            tr.fadeOut(400, function() {
                 tr.remove();
             });
 
             return false;
         };
 
-        AddHosp = function () {
+        AddHosp = function() {
 
             var newRow = $("<tr>");
             var cols = "";
@@ -373,7 +434,7 @@
                     "firstDay": 1
                 },
                 "opens": "center"
-            }, function (start, end, label) {
+            }, function(start, end, label) {
                 console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
             });
             $('.dataHospOut').daterangepicker({
@@ -412,7 +473,7 @@
                     "firstDay": 1
                 },
                 "opens": "center"
-            }, function (start, end, label) {
+            }, function(start, end, label) {
                 console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
             });
 
@@ -423,26 +484,30 @@
 
 <!--JS tabela viagem-->
 <script type="text/javascript">
-    (function ($) {
+    (function($) {
 
-        RemoveViagem = function (handler) {
+        RemoveViagem = function(handler) {
             var tr = $(handler).closest('tr');
 
-            tr.fadeOut(400, function () {
+            tr.fadeOut(400, function() {
                 tr.remove();
             });
 
             return false;
         };
 
-        AddViagem = function () {
+        AddViagem = function() {
 
             var newRow = $("<tr>");
             var cols = "";
 
+            cols += '<td><select id="destino" name="origem" class="select2_single form-control" tabindex="-1"><option disabled selected>Selecione o destino></option><option >Acre </option><option >Alagoas</option><option >Amapá</option><option >Amazonas</option><option >Bahia</option><option >Ceará</option><option >Distrito Federal</option><option >Espírito Santo </option><option >Goiás </option><option >Maranhão</option><option >Mato Grosso</option><option >Mato Grosso do Sul</option><option >Minas Gerais</option><option >Pará</option><option >Paraíba</option><option >Paraná</option><option >Pernambuco</option><option >Piauí</option><option >Rio de Janeiro</option><option >Rio Grande do Norte </option><option >Rio Grande do Sul </option><option >Rondônia </option><option >Roraima </option><option >Santa Catarina</option><option >São Paulo</option><option >Sergipe </option><option >Tocantins</option></select></td>';
+
             cols += '<td><select id="destino" name="destino" class="select2_single form-control" tabindex="-1"><option disabled selected>Selecione o destino></option><option >Acre </option><option >Alagoas</option><option >Amapá</option><option >Amazonas</option><option >Bahia</option><option >Ceará</option><option >Distrito Federal</option><option >Espírito Santo </option><option >Goiás </option><option >Maranhão</option><option >Mato Grosso</option><option >Mato Grosso do Sul</option><option >Minas Gerais</option><option >Pará</option><option >Paraíba</option><option >Paraná</option><option >Pernambuco</option><option >Piauí</option><option >Rio de Janeiro</option><option >Rio Grande do Norte </option><option >Rio Grande do Sul </option><option >Rondônia </option><option >Roraima </option><option >Santa Catarina</option><option >São Paulo</option><option >Sergipe </option><option >Tocantins</option></select></td>';
 
-            cols += '<td><input type="text" name="reservation" id="dataviagem" class="dataviagem form-control"/></td>';
+            cols += '<td><input id="horario" class="form-control col-md-7 col-xs-12" name="horario" data-inputmask="\'mask\' : \'99:99\'" type="text"></td>';
+
+            cols += '<td><input type="text" name="dataviagem" id="dataviagem"  class="dataviagem form-control"/></td>';
 
             cols += '<td class="actions">';
             cols += '<button class="btn btn-large btn-danger" onclick="RemoveViagem(this)" type="button">Remover</button>';
@@ -452,9 +517,9 @@
 
             $("#viagem-table").append(newRow);
 
-            $('.dataviagem').daterangepicker({
+            $('input[name="dataviagem"]').daterangepicker({
                 "locale": {
-                    "format": "DD-MM-YYYY",
+                    "format": "MM/DD/YYYY h:mm",
                     "separator": " - ",
                     "applyLabel": "Confirmar",
                     "cancelLabel": "Limpar",
@@ -486,11 +551,14 @@
                     ],
                     "firstDay": 1
                 },
-                "opens": "center"
-            }, function (start, end, label) {
+                "opens": "left"
+            }, function(start, end, label) {
                 console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
             });
 
+            $(document).ready(function() {
+                $(":input").inputmask();
+            });
             return false;
         };
     })(jQuery);

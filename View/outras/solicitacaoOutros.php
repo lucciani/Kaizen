@@ -4,7 +4,7 @@
 //include 'Controller/ColaboradorController.class.php';
 ?>
 <div class="x_content">
-    <form class="form-horizontal form-label-left" novalidate method="POST" action="http://localhost/kaizen_2/index.php?Controller=OutrasSolicitacoes&Action=salvar">
+    <form class="form-horizontal form-label-left" novalidate method="POST" action="index.php?Controller=OutrasSolicitacoes&Action=salvar">
         <span class="section">Outras solicitações</span>
 
         <div class="item form-group">
@@ -40,16 +40,16 @@
             </div>
         </div>
         <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="departamento">Centro de custo <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="centro_custo">Centro de custo <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <select id="departamento" name="departamento" class="select2_single form-control" tabindex="-1"required="required">
+                <select id="centro_custo" name="centro_custo" class="select2_single form-control" tabindex="-1"required="required">
                     <option> </option>
                     <?php
                     $centroCusto = new CentroDeCustoController();
                     $array = $centroCusto->listar();
                     foreach ($array as $key => $value) {
-                        echo '<option>' . $value['descricao'] . '</option>';
+                        echo '<option>' . $value['id'] . ' - ' . $value['descricao'] . '</option>';
                     }
                     ?>
                 </select>
@@ -67,12 +67,14 @@
             </label>
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <select id="natureza" name="natureza" class="select2_single form-control" tabindex="-1"required="required">
-                    <option > </option>
-                    <option value="AK">CCI</option>
-                    <option value="HI">EDD</option>
-                    <option value="CA">Fundação</option>
-                    <option value="NV">OPOVO</option>
-                    <option value="OR">SPR</option>
+                    <option> </option>
+                    <?php
+                    $natureza = new NaturezaController();
+                    $arrayNat = $natureza->listar();
+                    foreach ($arrayNat as $key => $nat) {
+                        echo '<option>' . $nat['id'] . ' - ' . $nat['descricao'] . '</option>';
+                    }
+                    ?>
                 </select>
             </div>
         </div>

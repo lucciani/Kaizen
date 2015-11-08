@@ -10,6 +10,7 @@ class ColaboradorController {
     }
 
     public function listar() {
+        $this->modelCol = new ColaboradorModel();
         return $this->modelCol->listarModel();
     }
 

@@ -6,12 +6,12 @@ class CentroDeCustoController {
     private $custo;
 
     public function __construct() {
-        $this->custo = new CentroDeCustoVO();
-        $this->modelCusto = new CentroDeCustoModel();
+        
     }
 
     public function salvar() {
-
+        $this->custo = new CentroDeCustoVO();
+        $this->modelCusto = new CentroDeCustoModel();
         //VO Centro de Custo
         $this->custo->setId($_POST["id"]);
         $this->custo->setDescricao($_POST["descricao"]);
@@ -29,6 +29,7 @@ class CentroDeCustoController {
     }
 
     public function listar() {
+        $this->modelCusto = new CentroDeCustoModel();
         return $this->modelCusto->listarModel();
     }
 

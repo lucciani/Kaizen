@@ -28,6 +28,7 @@ class FundoFixoController {
     }
 
     public function getIdCol($id) {
+        $this->modelCol = new ColaboradorModel();
         $cpf = implode("", $this->modelCol->getIdColaborador($id));
         return $cpf;
     }
@@ -60,14 +61,17 @@ class FundoFixoController {
     }
 
     public function listar() {
+        $this->modelFixo = new FundoFixoModel();
         return $this->modelFixo->listarModel();
     }
 
     public function countReg() {
+        $this->modelFixo = new FundoFixoModel();
         return $this->modelFixo->countRegistro();
     }
 
     public function reportFundoFixo($where) {
+        $this->modelFixo = new FundoFixoModel();
         return $this->modelFixo->relatorioFixo($where);
     }
 

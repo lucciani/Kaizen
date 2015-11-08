@@ -7,12 +7,13 @@ class RelatorioController {
     private $modelOutras;
 
     public function __construct() {
-        $this->modelViagem = new ViagemModel();
-        $this->modelFixo = new FundoFixoModel();
-        $this->modelOutras = new OutrasSolicitacoesModel();
+        
     }
 
     public function report() {
+        $this->modelViagem = new ViagemModel();
+        $this->modelFixo = new FundoFixoModel();
+        $this->modelOutras = new OutrasSolicitacoesModel();
 //        var_dump($_POST["tipoSolicitacao"]);
         switch ($_POST["tipoSolicitacao"]) {
             case "Viagem":

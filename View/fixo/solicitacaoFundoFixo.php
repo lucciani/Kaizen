@@ -9,11 +9,11 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <select id="empresa" name="empresa" class="select2_single form-control" tabindex="-1"required="required">
                     <option > </option>
-                    //<?php
+                    <?php
                     $empresa = new EmpresaController();
                     $arrayEm = $empresa->listar();
                     foreach ($arrayEm as $key => $valueEm) {
-                        echo '<option>'. $valueEm['descricao'] . '</option>';
+                        echo '<option>' . $valueEm['descricao'] . '</option>';
                     }
                     ?>
                 </select>

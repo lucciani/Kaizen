@@ -1,5 +1,4 @@
 <?php
-require('app/Config.inc.php');
 class SolicitanteController {
 
     private $modelSolicitante;

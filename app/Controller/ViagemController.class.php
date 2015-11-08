@@ -7,13 +7,13 @@ class ViagemController {
     private $modelViagem;
 
     public function __construct() {
-        $this->viagem = new ViagemVO();
-        $this->despesa = new DespesasVO();
-        $this->modelViagem = new ViagemModel();
+        
     }
 
     public function salvar() {
-
+        $this->viagem = new ViagemVO();
+        $this->despesa = new DespesasVO();
+        $this->modelViagem = new ViagemModel();
         //VO colaborador
         $this->viagem->setEmpresa($_POST["empresa"]);
         $this->viagem->setColaborador($_POST["colaborador"]);
@@ -23,7 +23,7 @@ class ViagemController {
         $this->viagem->setPeriodo($_POST["reservation"]);
         $this->viagem->setMotivo($_POST["motivoviagem"]);
         $this->viagem->setMotorista($_POST["motorista"]);
-        
+
         $this->despesa->setDescricao($_POST["descricao[]"]);
         $this->despesa->setQuantidade($_POST["quantidade[]"]);
         $this->despesa->setValorUn($_POST["valorDia[]"]);
@@ -40,14 +40,15 @@ class ViagemController {
         }
         header("Location: View/solicitante/retorno.php");
     }
-    
+
     public function listar() {
+        $this->modelViagem = new ViagemModel();
         return $this->modelViagem->listarModel();
     }
-    
+
     public function countReg() {
+        $this->modelViagem = new ViagemModel();
         return $this->modelViagem->countRegistro();
-        
     }
 
 }

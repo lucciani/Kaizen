@@ -2,15 +2,14 @@
 
 class EmpresaController {
 
-    private $empresa;
     private $modelEm;
 
     public function __construct() {
-        $this->empresa = new EmpresaVO();
-        $this->modelEm = new EmpresaModel();
+        
     }
 
     public function listar() {
+        $this->modelEm = new EmpresaModel();
         return $this->modelEm->listarModel();
     }
 
